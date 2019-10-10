@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  main:
+    build: .
+    container_name: "spell-warz-again"
+    network_mode: "bridge"
+    restart: on-failure
+    ports:
+      - "30311:12345"

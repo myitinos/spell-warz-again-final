@@ -4,7 +4,7 @@
 #include "Character.hpp"
 
 const long Character::MAX_LVL = 1000000L;
-const long Character::MAX_EXP = 1000000000000L;
+const long Character::MAX_EXP = 0x1fffffffffffffff;
 
 Character::Character(const char *characterName,
                      long characterLevel)
@@ -52,7 +52,7 @@ long Character::getLevel()
 
 long Character::getExperience()
 {
-    if (experience > Character::MAX_LVL)
+    if (experience > Character::MAX_EXP)
     {
         exit(-1);
     }

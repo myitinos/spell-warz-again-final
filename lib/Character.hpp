@@ -12,8 +12,8 @@ protected:
     static const long MAX_EXP;
 
     char name[32];
-    long level;
     long experience;
+    long level;
     long maxHP;
     long maxMP;
     long curHP;

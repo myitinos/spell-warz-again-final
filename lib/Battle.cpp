@@ -1,6 +1,7 @@
 #include "Battle.hpp"
 
 std::vector<Spell> Battle::SPELL_BOOK = {
+    Spell("FLAG STEAL", Spell::TYPE_DESTRUCTION, 1000000, 1),
     Spell("Blazing Storm", Spell::TYPE_DESTRUCTION, 10, 5),
     Spell("Energy Arrow", Spell::TYPE_DESTRUCTION, 40, 10),
     Spell("Pyro Strike", Spell::TYPE_DESTRUCTION, 90, 15),
@@ -162,7 +163,7 @@ void Battle::start()
             UserInterface::print(buff);
         }
 
-        choiceInt = (random() % (player2.getLevel() < SPELL_BOOK.size() ? player2.getLevel() : SPELL_BOOK.size())) + 1;
+        choiceInt = (this->turn % (player2.getLevel() < SPELL_BOOK.size() ? player2.getLevel() : SPELL_BOOK.size())) + 1;
         if (player2.canCastSpell(SPELL_BOOK.at(choiceInt)))
         {
             player2.castSpell(SPELL_BOOK.at(choiceInt), player1);

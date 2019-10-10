@@ -4,7 +4,7 @@
 class Spell
 {
 protected:
-    char name[16];
+    char name[64];
     int type;
     int power;
     int cost;

